@@ -131,7 +131,7 @@ public abstract class AbstractConverter implements Converter {
 		fillDomainRanges(vowlData);
 		createSubclassProperties(vowlData);
 		new ImportedChecker(vowlData, manager, loadedOntology, loadedOntologyPath).execute();
-		vowlData.getEntityMap().values().forEach(entity -> entity.accept(new EquivalentSorter(ontology.getOntologyID().getOntologyIRI().orElse(IRI
+		vowlData.getEntityMap().values().forEach(entity -> entity.accept(new EquivalentSorter(ontology.getOntologyID().getOntologyIRI().or(IRI
 				.create(loadedOntologyPath)), vowlData)));
 		new BaseIriCollector(vowlData).execute();
 	}

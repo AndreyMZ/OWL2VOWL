@@ -12,10 +12,11 @@ import de.uni_stuttgart.vis.vowl.owl2vowl.parser.owlapi.IndividualsVisitor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.util.OWLObjectVisitorAdapter;
 
 import java.util.Set;
 
-public class OwlClassAxiomVisitor implements OWLObjectVisitor {
+public class OwlClassAxiomVisitor extends OWLObjectVisitorAdapter {
 
 	private VowlData vowlData;
 	private OWLClass owlClass;
@@ -27,7 +28,7 @@ public class OwlClassAxiomVisitor implements OWLObjectVisitor {
 	}
 
 	@Override
-	public void doDefault(Object object) {
+	public void handleDefault(OWLObject object) {
 		logger.info("Unsupported axiom: " + object);
 	}
 
@@ -173,7 +174,7 @@ public class OwlClassAxiomVisitor implements OWLObjectVisitor {
 	}
 
 	private void processDataValueRestriction(OWLQuantifiedDataRestriction ce, PropertyAllSomeValue value) {
-		if (!ce.getFiller().isOWLDatatype()) {
+		if (!ce.getFiller().isDatatype()) {
 			// TODO no datatype
 			logger.info("DataValue range is not a datatype: " + ce);
 			return;

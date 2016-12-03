@@ -28,7 +28,7 @@ public class DataPropertyVisitor extends PropertyVisitor {
 	public void visit(OWLDataPropertyRangeAxiom axiom) {
 		VowlDatatypeProperty prop = vowlData.getDatatypePropertyForIri(owlObjectProperty.getIRI());
 
-		if (!axiom.getRange().isOWLDatatype()) {
+		if (!axiom.getRange().isDatatype()) {
 			logger.info("DataPropertyRange is no datatype: " + axiom);
 			return;
 		}
