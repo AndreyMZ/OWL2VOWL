@@ -39,8 +39,6 @@ public abstract class AbstractConverter implements Converter {
 	protected boolean initialized = false;
 
 	private void preLoadOntology() {
-		initApi();
-
 		try {
 			loadOntology();
 		} catch (OWLOntologyCreationException e) {
@@ -134,10 +132,6 @@ public abstract class AbstractConverter implements Converter {
 		vowlData.getEntityMap().values().forEach(entity -> entity.accept(new EquivalentSorter(ontology.getOntologyID().getOntologyIRI().or(IRI
 				.create(loadedOntologyPath)), vowlData)));
 		new BaseIriCollector(vowlData).execute();
-	}
-
-	private void initApi() {
-		manager = OWLManager.createOWLOntologyManager();
 	}
 
 	/**
